@@ -1,5 +1,10 @@
 [
   {
+    "os": "win-2016",
+    "instanceType":"t3a.medium",
+    "ami": "cloudwatch-agent-integration-test-win-2016*"
+  },
+  {
     "os": "win-2019",
     "instanceType":"t3a.medium",
     "ami": "cloudwatch-agent-integration-test-win-2019*"
