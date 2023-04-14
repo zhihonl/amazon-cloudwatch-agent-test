@@ -2,7 +2,7 @@
   {
     "os": "win-11",
     "instanceType":"t3a.medium",
-    "ami": "WINDOWS11"
+    "ami": "WINDOWS11-WORKSPACE-COPY"
   },
   {
     "os": "win-2012",
