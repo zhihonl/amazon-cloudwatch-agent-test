@@ -133,7 +133,7 @@ data "aws_ami" "latest" {
   most_recent = true
 
   filter {
-    name   = "name"
+    name   = "tag:Name"
     values = [var.ami]
   }
 }
