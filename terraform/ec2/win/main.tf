@@ -99,7 +99,7 @@ resource "null_resource" "integration_test" {
     password = rsadecrypt(aws_instance.cwagent.password_data, local.private_key_content)
     host     = aws_instance.cwagent.public_dns
     port     = 5985
-    timeout  = "3m"
+    timeout  = "10m"
   }
 
   provisioner "file" {
