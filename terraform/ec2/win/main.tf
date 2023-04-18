@@ -57,7 +57,7 @@ resource "aws_instance" "cwagent" {
 }
 
 resource "null_resource" "integration_test" {
-  depends_on = [aws_instance.cwagent, null_resource.upload-validator]
+  depends_on = [aws_instance.cwagent]
 
   # Install software
   connection {
@@ -71,7 +71,6 @@ resource "null_resource" "integration_test" {
   provisioner "remote-exec" {
     inline = [
       "aws s3 cp s3://${var.s3_bucket}/integration-test/packaging/${var.cwa_github_sha}/amazon-cloudwatch-agent.msi .",
-      "aws s3 cp s3://${var.s3_bucket}/integration-test/validator/${var.cwa_github_sha}/windows/${var.arc}/validator.exe .",
       "start /wait msiexec /i amazon-cloudwatch-agent.msi /norestart /qb-",
     ]
   }
