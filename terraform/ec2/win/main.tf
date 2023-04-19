@@ -90,9 +90,9 @@ resource "null_resource" "integration_test" {
   provisioner "remote-exec" {
     inline = [
       "echo prepare environment",
-      "export LOCAL_STACK_HOST_NAME=${var.local_stack_host_name}",
-      "export AWS_REGION=${var.region}",
-      "export PATH=$PATH:/snap/bin:/usr/local/go/bin",
+      "SET LOCAL_STACK_HOST_NAME=${var.local_stack_host_name}",
+      "SET AWS_REGION=${var.region}",
+      "SET PATH "$($env:path);$GOPATH\bin",
       "echo run integration test",
       "cd ~/amazon-cloudwatch-agent-test",
       "echo run sanity test && go test ./test/sanity -p 1 -v",
