@@ -93,9 +93,9 @@ resource "null_resource" "integration_test" {
       "SET LOCAL_STACK_HOST_NAME=${var.local_stack_host_name}",
       "SET AWS_REGION=${var.region}",
       "echo run integration test",
-      "cd ~/amazon-cloudwatch-agent-test",
+      "cd \amazon-cloudwatch-agent-test",
       "go env -w GO111MODULE=auto",
-      "echo run sanity test && go test ./test/sanity -p 1 -v",
+      "echo run sanity test && go test \test\sanity -p 1 -v",
       "go test ${var.test_dir} -p 1 -timeout 1h -computeType=EC2 -bucket=${var.s3_bucket} -plugins='${var.plugin_tests}' -cwaCommitSha=${var.cwa_github_sha} -v"
     ]
   }
