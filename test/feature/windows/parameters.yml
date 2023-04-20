@@ -48,7 +48,7 @@ metric_validation:
       - name: "objectname"
         value: "System"
 
-  - metric_name: "cpu_usage"
+  - metric_name: "procstat cpu_usage"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
