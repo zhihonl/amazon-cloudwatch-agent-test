@@ -10,11 +10,47 @@
           "metrics_collection_interval": 60,
           "service_address": ":8125"
         },
+        "Processor": {
+          "measurement": [
+            {
+              "name":"% Idle Time",
+              "rename": "Idle_Time"
+            },
+            {
+              "name":"% Interrupt Time",
+              "rename": "Interrupt_Time"
+            },
+            {
+              "name":"% User Time",
+              "rename": "User_Time"
+            },
+            {
+              "name":"% Processor Time",
+              "rename": "Processor_Time"
+            }
+          ],
+          "resources": [
+            "*"
+          ],
+          "metrics_collection_interval": 1
+        },
         "Memory": {
           "measurement": [
             {
               "name": "Available Bytes",
               "rename": "Available_Bytes"
+            },
+            {
+              "name":"Cache Faults/sec",
+              "rename": "Cache_Faults_Per_Sec"
+            },
+            {
+              "name":"Page Faults/sec",
+              "rename": "Page_Faults_Per_sec"
+            },
+            {
+              "name":"Pages/sec",
+              "rename":"Page_Per_Sec"
             }
           ],
           "metrics_collection_interval": 1

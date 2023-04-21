@@ -22,6 +22,7 @@ cloudwatch_agent_config: "<cloudwatch_agent_config>"
 # https://github.com/aws/amazon-cloudwatch-agent-test/pull/109/files#diff-47c87373e751dd9fd5ce504e44b320765c8b84d6cde524a4e8a32cfa34674165R124-R135
 metric_namespace: "CloudWatchAgentWinFeature"
 metric_validation:
+# Validations for StatsD
   - metric_name: "statsd_gauge_1"
     metric_value: 1.0
     metric_sample_count: 1
@@ -36,23 +37,53 @@ metric_validation:
       - name: "metric_type"
         value: "counter"
 
+# Validations for Memory metrics
   - metric_name: "Available_Bytes"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
         value: "Memory"
 
-  - metric_name: "Processor_Queue_Length"
+  - metric_name: "Cache_Faults_Per_Sec"
+    metric_sample_count: 60
+    metric_dimension: 
+      - name: "objectname"
+        value: "Memory"
+
+  - metric_name: "Page_Faults_Per_sec"
+    metric_sample_count: 60
+    metric_dimension: 
+      - name: "objectname"
+        value: "Memory"
+  
+
+  - metric_name: "Page_Per_Sec"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
         value: "System"
 
-  - metric_name: "procstat cpu_usage"
+# Validations for Processor
+  - metric_name: "Idle_Time"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
-        value: "procstat"
+        value: "Processor"
+  - metric_name: "Interrupt_Time"
+    metric_sample_count: 60
+    metric_dimension: 
+      - name: "objectname"
+        value: "Processor"
+  - metric_name: "User_Time"
+    metric_sample_count: 60
+    metric_dimension: 
+      - name: "objectname"
+        value: "Processor"
+  - metric_name: "Processor_Time"
+    metric_sample_count: 60
+    metric_dimension: 
+      - name: "objectname"
+        value: "Processor"
 
 # Logs that the test needs to validate; moreover, the feature validation already has
 # InstanceID as a log group; therefore, does not need to pass it
