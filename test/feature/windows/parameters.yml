@@ -69,28 +69,28 @@ metric_validation:
     metric_dimension: 
       - name: "objectname"
         value: "Processor"
-      - name: "Instance"
+      - name: "instance"
         value: "0"
   - metric_name: "Interrupt_Time"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
         value: "Processor"
-      - name: "Instance"
+      - name: "instance"
         value: "0"
   - metric_name: "User_Time"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
         value: "Processor"
-      - name: "Instance"
+      - name: "instance"
         value: "0"
   - metric_name: "Processor_Time"
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
         value: "Processor"
-      - name: "Instance"
+      - name: "instance"
         value: "0"
 
 # Logs that the test needs to validate; moreover, the feature validation already has
