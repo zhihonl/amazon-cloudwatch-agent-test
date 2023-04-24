@@ -34,6 +34,56 @@
           ],
           "metrics_collection_interval": 1
         },
+        "PhysicalDisk": {
+          "measurement": [
+            {
+              "name":"% Disk Time",
+              "rename": "Disk_Time"
+            },
+            {
+              "name":"Disk Write Bytes/sec",
+              "rename": "Write_Bytes_Per_Sec"
+            },
+            {
+              "name":"Disk Read Bytes/sec",
+              "rename": "Read_Bytes_Per_Sec"
+            },
+            {
+              "name":"Disk Writes/sec",
+              "rename": "Write_Per_Sec"
+            },
+            {
+              "name":"Disk Reads/sec",
+              "rename": "Disk_Read_Per_Sec"
+            }
+          ],
+          "resources": [
+            "*"
+          ]
+        },
+        "Network Interface": {
+          "measurement": [
+            {
+              "name":"Bytes Sent/sec",
+              "rename": "Bytes_Sent_Per_Sec"
+            },
+            {
+              "name":"Bytes Received/sec",
+              "rename": "Bytes_Received_Per_Sec"
+            },
+            {
+              "name":"Packets Sent/sec",
+              "rename": "Packets_Sent_Per_Sec"
+            },
+            {
+              "name":"Packets Received/sec",
+              "rename": "Packets_Received_Per_Sec"
+            }
+          ],
+          "resources": [
+            "*"
+          ]
+        },
         "Memory": {
           "measurement": [
             {
