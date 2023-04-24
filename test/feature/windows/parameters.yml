@@ -61,7 +61,7 @@ metric_validation:
     metric_sample_count: 60
     metric_dimension: 
       - name: "objectname"
-        value: "System"
+        value: "Memory"
 
 # Validations for Processor
   - metric_name: "Idle_Time"
