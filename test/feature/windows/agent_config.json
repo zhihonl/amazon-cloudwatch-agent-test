@@ -34,6 +34,18 @@
           ],
           "metrics_collection_interval": 1
         },
+        "LogicalDisk": {
+          "measurement": [
+            {
+              "name":"% Free Space",
+              "rename":"Free_Space"
+            }
+          ],
+          "resources": [
+            "*"
+          ],
+          "metrics_collection_interval": 1
+        },
         "PhysicalDisk": {
           "measurement": [
             {
@@ -115,6 +127,35 @@
               }
             ],
             "metrics_collection_interval": 1
+        },
+        "TCPv4": {
+          "measurement": [
+              {
+                "name": "Connections Established",
+                "rename": "Connections_Established"
+              }
+          ],
+          "metrics_collection_interval": 1
+        },
+        "TCPv6": {
+          "measurement": [
+            {
+                "name": "Connections Established",
+                "rename": "Connections_Established"
+            }
+          ]
+        },
+        "Paging File": {
+          "measurement": [
+            {
+                "name": "% Usage",
+                "rename": "Usage"
+            }
+          ],
+          "resources": [
+            "*"
+          ],
+          "metrics_collection_interval": 1
         },
         "procstat": [
             {
