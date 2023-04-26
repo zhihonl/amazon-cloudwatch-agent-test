@@ -146,18 +146,6 @@
           ],
           "metrics_collection_interval": 1
         },
-        "Paging File": {
-          "measurement": [
-            {
-                "name": "% Usage",
-                "rename": "Usage"
-            }
-          ],
-          "resources": [
-            "*"
-          ],
-          "metrics_collection_interval": 1
-        },
         "procstat": [
             {
               "exe": "amazon-cloudwatch-agent",
