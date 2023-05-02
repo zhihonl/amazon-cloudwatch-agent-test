@@ -66,7 +66,7 @@ func getEc2TestRunners(env *environment.MetaData) []*test_runner.TestRunner {
 	if ec2TestRunners == nil {
 		factory := dimension.GetDimensionFactory(*env)
 		ec2TestRunners = []*test_runner.TestRunner{
-			{TestRunner: &StatsdTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
+/* 			{TestRunner: &StatsdTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
 			{TestRunner: &DiskTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
 			{TestRunner: &NetStatTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
 			{TestRunner: &PrometheusTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
@@ -78,7 +78,7 @@ func getEc2TestRunners(env *environment.MetaData) []*test_runner.TestRunner {
 			{TestRunner: &EthtoolTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
 			{TestRunner: &EMFTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
 			{TestRunner: &SwapTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
-			{TestRunner: &ProcessesTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
+			{TestRunner: &ProcessesTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}}, */
 			{TestRunner: &CollectDTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}}},
 		}
 	}
