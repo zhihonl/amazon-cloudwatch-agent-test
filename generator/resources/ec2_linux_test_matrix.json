@@ -77,8 +77,8 @@
     "family": "linux"
   },
   {
-    "os": "sles15",
-    "username": "ec2-user",
+    "os": "centos-stream-8",
+    "username": "cloud-user",
     "instanceType":"t3a.medium",
     "installAgentCommand": "go run ./install/install_agent.go rpm",
     "ami": "cloudwatch-agent-integration-test-centos-stream-8*",
