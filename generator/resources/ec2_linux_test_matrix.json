@@ -77,6 +77,17 @@
     "family": "linux"
   },
   {
+    "os": "centos-7",
+    "username": "centos",
+    "instanceType":"t3a.medium",
+    "installAgentCommand": "go run ./install/install_agent.go rpm",
+    "ami": "cloudwatch-agent-integration-test-centos-7*",
+    "caCertPath": "/etc/ssl/certs/ca-bundle.crt",
+    "arc": "amd64",
+    "binaryName": "amazon-cloudwatch-agent.rpm",
+    "family": "linux"
+  },
+  {
     "os": "centos-stream-8",
     "username": "cloud-user",
     "instanceType":"t3a.medium",
