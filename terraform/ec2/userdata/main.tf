@@ -35,6 +35,21 @@ locals {
 }
 
 #####################################################################
+# Generate template file for EC2 userdata script
+#####################################################################
+data "template_file" "init" {
+  template = "${file("install_agent.sh")}"
+
+  vars = {
+    cwa_github_sha = var.cwa_github_sha
+    github_test_repo_branch = var.github_test_repo_branch
+    github_test_repo = var.github_test_repo
+    binary_uri = local.binary_uri
+    install_agent = var.install_agent
+  }
+}
+
+#####################################################################
 # Generate EC2 Instance and execute test commands
 #####################################################################
 resource "aws_instance" "cwagent" {
@@ -45,17 +60,7 @@ resource "aws_instance" "cwagent" {
   vpc_security_group_ids               = [module.basic_components.security_group]
   associate_public_ip_address          = true
   instance_initiated_shutdown_behavior = "terminate"
-  user_data = << EOF
-		#! /bin/bash
-    echo sha ${var.cwa_github_sha}
-    cloud-init status --wait
-    echo clone and install agent
-    git clone --branch ${var.github_test_repo_branch} ${var.github_test_repo}
-    cd amazon-cloudwatch-agent-test
-    aws s3 cp s3://${local.binary_uri}
-    export PATH=$PATH:/snap/bin:/usr/local/go/bin
-    var.install_agent
-	EOF
+  user_data = data.template_file.init.rendered
 
   metadata_options {
     http_endpoint = "enabled"
