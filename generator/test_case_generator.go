@@ -78,7 +78,7 @@ var testTypeToTestDirMap = map[string][]string{
 	},
 	"ec2_userdata": {
 		"./test/metric_value_benchmark"
-	}
+	},
 }
 
 func main() {
