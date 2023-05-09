@@ -35,21 +35,6 @@ locals {
 }
 
 #####################################################################
-# Generate template file for EC2 userdata script
-#####################################################################
-data "template_file" "init" {
-  template = "${file("install_agent.sh")}"
-
-  vars = {
-    cwa_github_sha = "${var.cwa_github_sha}"
-    github_test_repo_branch = "${var.github_test_repo_branch}"
-    github_test_repo = "${var.github_test_repo}"
-    binary_uri = "${local.binary_uri}"
-    install_agent = "${var.install_agent}"
-  }
-}
-
-#####################################################################
 # Generate EC2 Instance and execute test commands
 #####################################################################
 resource "aws_instance" "cwagent" {
@@ -119,5 +104,20 @@ data "aws_ami" "latest" {
   filter {
     name   = "name"
     values = [var.ami]
+  }
+}
+
+#####################################################################
+# Generate template file for EC2 userdata script
+#####################################################################
+data "template_file" "init" {
+  template = file("install_agent.sh")
+
+  vars = {
+    cwa_github_sha = var.cwa_github_sha
+    github_test_repo_branch = var.github_test_repo_branch
+    github_test_repo = var.github_test_repo
+    binary_uri = local.binary_uri
+    install_agent = var.install_agent
   }
 }
