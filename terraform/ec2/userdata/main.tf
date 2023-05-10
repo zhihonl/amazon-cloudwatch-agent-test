@@ -82,6 +82,7 @@ resource "null_resource" "integration_test" {
   #Run sanity check and integration test
   provisioner "remote-exec" {
     inline = [
+      "sleep 30",
       "echo Getting Cloud-init Logs",
       "sudo cat /var/log/cloud-init-output.log",
       "echo prepare environment",
