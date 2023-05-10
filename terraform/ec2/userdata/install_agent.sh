@@ -1,7 +1,5 @@
 #! /bin/bash
 echo sha ${cwa_github_sha}
-echo Install go in root
-yum install -y go
 echo clone and install agent
 cd /home/ec2-user/
 git clone --branch ${github_test_repo_branch} ${github_test_repo}
