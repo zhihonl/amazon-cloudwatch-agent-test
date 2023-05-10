@@ -82,7 +82,6 @@ resource "null_resource" "integration_test" {
   #Run sanity check and integration test
   provisioner "remote-exec" {
     inline = [
-      "sleep 30",
       "echo Getting Cloud-init Logs",
       "sudo cat /var/log/cloud-init-output.log",
       "echo prepare environment",
@@ -91,7 +90,7 @@ resource "null_resource" "integration_test" {
       "export PATH=$PATH:/snap/bin:/usr/local/go/bin",
       "echo run integration test",
       "cd ~/amazon-cloudwatch-agent-test",
-      "sudo chmod 777 /test/sanity/resources/verifyUnixCtlScript.sh",
+      "sudo chmod 777 ~/amazon-cloudwatch-agent-test/test/sanity/resources/verifyUnixCtlScript.sh",
       "echo run sanity test && go test ./test/sanity -p 1 -v",
       "go test ${var.test_dir} -p 1 -timeout 1h -computeType=EC2 -bucket=${var.s3_bucket} -plugins='${var.plugin_tests}' -cwaCommitSha=${var.cwa_github_sha} -caCertPath=${var.ca_cert_path} -v"
     ]
