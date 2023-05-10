@@ -9,4 +9,5 @@ cd amazon-cloudwatch-agent-test
 aws s3 cp s3://${binary_uri} .
 export PATH=$PATH:/snap/bin:/usr/local/go/bin
 rpm -U ./amazon-cloudwatch-agent.rpm
+chmod /test/sanity/resources/verifyUnixCtlScript.sh
 cloud-init status --wait
