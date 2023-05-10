@@ -1,5 +1,6 @@
 #! /bin/bash
 echo sha ${cwa_github_sha}
+echo Script is executing
 cloud-init status --wait
 echo clone and install agent
 git clone --branch ${github_test_repo_branch} ${github_test_repo}

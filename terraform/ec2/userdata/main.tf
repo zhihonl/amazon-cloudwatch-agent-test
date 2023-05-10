@@ -82,10 +82,8 @@ resource "null_resource" "integration_test" {
   #Run sanity check and integration test
   provisioner "remote-exec" {
     inline = [
-      "echo Checking Directory:",
-      "echo $(ls)",
       "echo Getting Cloud-init Logs",
-      "sudo cat /var/log/cloud-init.log",
+      "sudo cat /var/log/cloud-init-output.log",
       "echo prepare environment",
       "export LOCAL_STACK_HOST_NAME=${var.local_stack_host_name}",
       "export AWS_REGION=${var.region}",
