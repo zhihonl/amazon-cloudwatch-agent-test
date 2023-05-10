@@ -91,7 +91,7 @@ resource "null_resource" "integration_test" {
       "export PATH=$PATH:/snap/bin:/usr/local/go/bin",
       "echo run integration test",
       "cd ~/amazon-cloudwatch-agent-test",
-      "chmod /test/sanity/resources/verifyUnixCtlScript.sh",
+      "sudo chmod 777 /test/sanity/resources/verifyUnixCtlScript.sh",
       "echo run sanity test && go test ./test/sanity -p 1 -v",
       "go test ${var.test_dir} -p 1 -timeout 1h -computeType=EC2 -bucket=${var.s3_bucket} -plugins='${var.plugin_tests}' -cwaCommitSha=${var.cwa_github_sha} -caCertPath=${var.ca_cert_path} -v"
     ]
