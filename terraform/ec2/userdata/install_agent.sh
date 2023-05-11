@@ -8,5 +8,5 @@ aws s3 cp s3://${binary_uri} .
 export HOME=/root
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-var.install_agent
+${var.install_agent}
 cloud-init status --wait
