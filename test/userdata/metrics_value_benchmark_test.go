@@ -43,40 +43,8 @@ func init() {
 }
 
 var (
-	ecsTestRunners []*ECSTestRunner
 	ec2TestRunners []*test_runner.TestRunner
-	eksTestRunners []*EKSTestRunner
 )
-
-func getEcsTestRunners(env *environment.MetaData) []*ECSTestRunner {
-	if ecsTestRunners == nil {
-		factory := dimension.GetDimensionFactory(*env)
-
-		ecsTestRunners = []*ECSTestRunner{
-			{
-				testRunner:       &ContainerInsightsTestRunner{test_runner.BaseTestRunner{DimensionFactory: factory}},
-				agentRunStrategy: &ECSAgentRunStrategy{},
-				env:              *env,
-			},
-		}
-	}
-	return ecsTestRunners
-}
-
-func getEksTestRunners(env *environment.MetaData) []*EKSTestRunner {
-	if eksTestRunners == nil {
-		factory := dimension.GetDimensionFactory(*env)
-		eksTestRunners = []*EKSTestRunner{
-			{
-				runner: &EKSDaemonTestRunner{BaseTestRunner: test_runner.BaseTestRunner{
-					DimensionFactory: factory,
-				}},
-				env: *env,
-			},
-		}
-	}
-	return eksTestRunners
-}
 
 func getEc2TestRunners(env *environment.MetaData) []*test_runner.TestRunner {
 	if ec2TestRunners == nil {
@@ -91,23 +59,15 @@ func getEc2TestRunners(env *environment.MetaData) []*test_runner.TestRunner {
 func (suite *MetricBenchmarkTestSuite) TestAllInSuite() {
 	env := environment.GetEnvironmentMetaData(envMetaDataStrings)
 	switch env.ComputeType {
-	case computetype.ECS:
-		log.Println("Environment compute type is ECS")
-		for _, ecsTestRunner := range getEcsTestRunners(env) {
-			ecsTestRunner.Run(suite, env)
-		}
-	case computetype.EKS:
-		log.Println("Environment compute type is EKS")
-		for _, testRunner := range getEksTestRunners(env) {
-			testRunner.Run(suite, env)
-		}
-	default: // EC2 tests
+	case computetype.EC2: // EC2 tests
 		log.Println("Environment compute type is EC2")
 		for _, testRunner := range getEc2TestRunners(env) {
 			if shouldRunEC2Test(env, testRunner) {
 				testRunner.Run(suite)
 			}
 		}
+	default: \
+		log.Println("Invalid environment being used")
 	}
 
 	suite.Assert().Equal(status.SUCCESSFUL, suite.Result.GetStatus(), "Metric Benchmark Test Suite Failed")
