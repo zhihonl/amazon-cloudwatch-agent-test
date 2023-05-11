@@ -16,7 +16,7 @@ const (
 	debInstall        = "deb"
 	rpmInstall        = "rpm"
 	debInstallCommand = "sudo dpkg -i -E ./amazon-cloudwatch-agent.deb"
-	rpmInstallCommand = "sudo rpm -U ./amazon-cloudwatch-agent.rpm"
+	rpmInstallCommand = "rpm -U ./amazon-cloudwatch-agent.rpm"
 )
 
 func main() {
