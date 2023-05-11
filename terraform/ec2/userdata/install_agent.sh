@@ -10,5 +10,5 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 echo Running command ${install_agent}
 ${install_agent}
-/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/test/userdata/agent_configs/cpu_config.json
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/amazon-cloudwatch-agent-test/test/userdata/agent_configs/cpu_config.json
 cloud-init status --wait
