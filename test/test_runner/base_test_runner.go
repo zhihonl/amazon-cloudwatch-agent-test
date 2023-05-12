@@ -61,7 +61,7 @@ func (t *TestRunner) Run(s ITestSuite) {
 		post-launch since it should've been done on launch already in
 		order to imitate customer behavoir
 	*/
-	if(testName == "Userdata"){
+	if testName == "Userdata" {
 		testGroupResult := status.TestGroupResult{
 			Name: t.TestRunner.GetTestName(),
 			TestResults: []status.TestResult{
