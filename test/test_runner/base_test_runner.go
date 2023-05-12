@@ -70,7 +70,7 @@ func (t *TestRunner) Run(s ITestSuite) {
 			},
 		},
 	}
-	err := nil
+	err := error(nil)
 	if testName == "Userdata" {
 		testGroupResult = t.TestRunner.Validate()
 	} else{
