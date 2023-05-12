@@ -72,8 +72,7 @@ func (t *TestRunner) Run(s ITestSuite) {
 			},
 		}
 		testGroupResult = t.TestRunner.Validate()
-	}
-	else{
+	} else{
 		testGroupResult, err := t.runAgent()
 		if err == nil {
 			testGroupResult = t.TestRunner.Validate()
