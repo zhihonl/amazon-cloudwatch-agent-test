@@ -66,7 +66,7 @@ func (suite *MetricBenchmarkTestSuite) TestAllInSuite() {
 				testRunner.Run(suite)
 			}
 		}
-	default: \
+	default:
 		log.Println("Invalid environment being used")
 	}
 
