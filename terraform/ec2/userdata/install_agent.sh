@@ -16,4 +16,5 @@ echo Starting agent now
 echo Let agent run for 60 seconds
 sleep 60
 echo Agent finished run for 60 seconds
+
 cloud-init status --wait
