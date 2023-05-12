@@ -57,6 +57,28 @@ func (t *BaseTestRunner) GetAgentRunDuration() time.Duration {
 func (t *TestRunner) Run(s ITestSuite) {
 	testName := t.TestRunner.GetTestName()
 	log.Printf("Running %v", testName)
+	/* 	This block is used to prevent userdata from running the agent
+		post-launch since it should've been done on launch already in
+		order to imitate customer behavoir
+	*/
+	if(testName == "Userdata"){
+		testGroupResult := status.TestGroupResult{
+			Name: t.TestRunner.GetTestName(),
+			TestResults: []status.TestResult{
+				{
+					Name:   "Agent Started",
+					Status: status.SUCCESSFUL,
+				},
+			},
+		}
+		testGroupResult = t.TestRunner.Validate()
+	}
+	else{
+		testGroupResult, err := t.runAgent()
+		if err == nil {
+			testGroupResult = t.TestRunner.Validate()
+		}
+	}
 	testGroupResult, err := t.runAgent()
 	if err == nil {
 		testGroupResult = t.TestRunner.Validate()

@@ -36,7 +36,7 @@ func (t *CPUTestRunner) Validate() status.TestGroupResult {
 }
 
 func (t *CPUTestRunner) GetTestName() string {
-	return "CPU"
+	return "Userdata"
 }
 
 func (t *CPUTestRunner) GetAgentConfigFileName() string {
