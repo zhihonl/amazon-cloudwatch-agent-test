@@ -78,10 +78,7 @@ func (t *TestRunner) Run(s ITestSuite) {
 			testGroupResult = t.TestRunner.Validate()
 		}
 	}
-	testGroupResult, err := t.runAgent()
-	if err == nil {
-		testGroupResult = t.TestRunner.Validate()
-	}
+
 	s.AddToSuiteResult(testGroupResult)
 	if testGroupResult.GetStatus() != status.SUCCESSFUL {
 		log.Printf("%v test group failed due to %v", testName, err)
