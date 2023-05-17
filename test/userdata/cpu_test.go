@@ -20,6 +20,10 @@ type CPUTestRunner struct {
 	test_runner.BaseTestRunner
 }
 
+type TestRunner struct {
+	TestRunner test_runner.ITestRunner
+}
+
 var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
 
 func (t *CPUTestRunner) Validate() status.TestGroupResult {
