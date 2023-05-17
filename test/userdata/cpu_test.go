@@ -20,10 +20,6 @@ type CPUTestRunner struct {
 	test_runner.BaseTestRunner
 }
 
-type TestRunner struct {
-	TestRunner test_runner.ITestRunner
-}
-
 var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
 
 func (t *CPUTestRunner) Validate() status.TestGroupResult {
@@ -92,9 +88,9 @@ func (t *CPUTestRunner) validateCpuMetric(metricName string) status.TestResult {
 	return testResult
 }
 
-func (t *TestRunner) runAgent() (status.TestGroupResult, error) {
+func (t *CPUTestRunner) runAgent() (status.TestGroupResult, error) {
 	testGroupResult := status.TestGroupResult{
-		Name: t.TestRunner.GetTestName(),
+		Name: t.CPUTestRunner.GetTestName(),
 		TestResults: []status.TestResult{
 			{
 				Name:   "Starting Agent",

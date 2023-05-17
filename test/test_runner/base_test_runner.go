@@ -32,7 +32,6 @@ type ITestRunner interface {
 	GetMeasuredMetrics() []string
 	SetupBeforeAgentRun() error
 	SetupAfterAgentRun() error
-	runAgent() (status.TestGroupResult, error)
 }
 
 type TestRunner struct {
