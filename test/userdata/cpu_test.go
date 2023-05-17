@@ -90,7 +90,7 @@ func (t *CPUTestRunner) validateCpuMetric(metricName string) status.TestResult {
 
 func (t *CPUTestRunner) runAgent() (status.TestGroupResult, error) {
 	testGroupResult := status.TestGroupResult{
-		Name: t.CPUTestRunner.GetTestName(),
+		Name: t.TestRunner.GetTestName(),
 		TestResults: []status.TestResult{
 			{
 				Name:   "Starting Agent",
