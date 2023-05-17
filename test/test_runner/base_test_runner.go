@@ -32,6 +32,7 @@ type ITestRunner interface {
 	GetMeasuredMetrics() []string
 	SetupBeforeAgentRun() error
 	SetupAfterAgentRun() error
+	runAgent() (status.TestGroupResult, error)
 }
 
 type TestRunner struct {
@@ -57,7 +58,7 @@ func (t *BaseTestRunner) GetAgentRunDuration() time.Duration {
 func (t *TestRunner) Run(s ITestSuite) {
 	testName := t.TestRunner.GetTestName()
 	log.Printf("Running %v", testName)
-	
+
 	testGroupResult, err := t.runAgent()
 	if err == nil {
 		testGroupResult = t.TestRunner.Validate()
