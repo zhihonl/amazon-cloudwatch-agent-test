@@ -57,7 +57,7 @@ func (t *BaseTestRunner) GetAgentRunDuration() time.Duration {
 
 func (t *BaseTestRunner) runAgent() (status.TestGroupResult, error) {
 	testGroupResult := status.TestGroupResult{
-		Name: t.TestRunner.GetTestName(),
+		Name: t.GetTestName(),
 		TestResults: []status.TestResult{
 			{
 				Name:   "Starting Agent",
@@ -66,13 +66,13 @@ func (t *BaseTestRunner) runAgent() (status.TestGroupResult, error) {
 		},
 	}
 
-	err := t.TestRunner.SetupBeforeAgentRun()
+	err := t.SetupBeforeAgentRun()
 	if err != nil {
 		testGroupResult.TestResults[0].Status = status.FAILED
 		return testGroupResult, fmt.Errorf("Failed to complete setup before agent run due to: %w", err)
 	}
 
-	agentConfigPath := filepath.Join(agentConfigDirectory, t.TestRunner.GetAgentConfigFileName())
+	agentConfigPath := filepath.Join(agentConfigDirectory, t.GetAgentConfigFileName())
 	log.Printf("Starting agent using agent config file %s", agentConfigPath)
 	common.CopyFile(agentConfigPath, configOutputPath)
 	err = common.StartAgent(configOutputPath, false)
@@ -82,13 +82,13 @@ func (t *BaseTestRunner) runAgent() (status.TestGroupResult, error) {
 		return testGroupResult, fmt.Errorf("Agent could not start due to: %w", err)
 	}
 
-	err = t.TestRunner.SetupAfterAgentRun()
+	err = t.SetupAfterAgentRun()
 	if err != nil {
 		testGroupResult.TestResults[0].Status = status.FAILED
 		return testGroupResult, fmt.Errorf("Failed to complete setup after agent run due to: %w", err)
 	}
 
-	runningDuration := t.TestRunner.GetAgentRunDuration()
+	runningDuration := t.GetAgentRunDuration()
 	time.Sleep(runningDuration)
 	log.Printf("Agent has been running for : %s", runningDuration.String())
 	common.StopAgent()
