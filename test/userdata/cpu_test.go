@@ -93,7 +93,7 @@ func (t *CPUTestRunner) validateCpuMetric(metricName string) status.TestResult {
 		return testResult
 	}
 
-	if !common.isAllValuesGreaterThanOrEqualToExpectedValue(metricName, values, 0) {
+	if !common.IsAllValuesGreaterThanOrEqualToExpectedValue(metricName, values, 0) {
 		return testResult
 	}
 
