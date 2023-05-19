@@ -112,7 +112,7 @@ func (t *BaseTestRunner) RunAgent() (status.TestGroupResult, error) {
 func (t *TestRunner) Run(s ITestSuite) {
 	testName := t.TestRunner.GetTestName()
 	log.Printf("Running %v", testName)
-	testGroupResult, err := t.TestRunner.runAgent()
+	testGroupResult, err := t.TestRunner.RunAgent()
 	if err == nil {
 		testGroupResult = t.TestRunner.Validate()
 	}
