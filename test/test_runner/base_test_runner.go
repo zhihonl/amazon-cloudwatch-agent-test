@@ -60,6 +60,33 @@ func (t *BaseTestRunner) ShouldRunAgent() bool {
 	return true
 }
 
+func (t *TestRunner) Run(s ITestSuite) {
+	testName := t.TestRunner.GetTestName()
+	log.Printf("Running %v", testName)
+	testGroupResult := status.TestGroupResult{
+		Name: t.TestRunner.GetTestName(),
+		TestResults: []status.TestResult{
+			{
+				Name:   "Starting Agent",
+				Status: status.SUCCESSFUL,
+			},
+		},
+	}
+	var err error
+	if t.TestRunner.ShouldRunAgent(){
+		testGroupResult, err = t.runAgent()
+		if err == nil {
+			testGroupResult = t.TestRunner.Validate()
+		}
+	} else{
+		testGroupResult = t.TestRunner.Validate()
+	}
+
+	s.AddToSuiteResult(testGroupResult)
+	if testGroupResult.GetStatus() != status.SUCCESSFUL {
+		log.Printf("%v test group failed due to %v", testName, err)
+	}
+}
 
 func (t *TestRunner) runAgent() (status.TestGroupResult, error) {
 	testGroupResult := status.TestGroupResult{
@@ -106,32 +133,4 @@ func (t *TestRunner) runAgent() (status.TestGroupResult, error) {
 	}
 
 	return testGroupResult, nil
-}
-
-func (t *TestRunner) Run(s ITestSuite) {
-	testName := t.TestRunner.GetTestName()
-	log.Printf("Running %v", testName)
-	testGroupResult := status.TestGroupResult{
-		Name: t.TestRunner.GetTestName(),
-		TestResults: []status.TestResult{
-			{
-				Name:   "Starting Agent",
-				Status: status.SUCCESSFUL,
-			},
-		},
-	}
-	var err error
-	if t.TestRunner.ShouldRunAgent(){
-		testGroupResult, err = t.TestRunner.runAgent()
-		if err == nil {
-			testGroupResult = t.TestRunner.Validate()
-		}
-	} else{
-		testGroupResult = t.TestRunner.Validate()
-	}
-
-	s.AddToSuiteResult(testGroupResult)
-	if testGroupResult.GetStatus() != status.SUCCESSFUL {
-		log.Printf("%v test group failed due to %v", testName, err)
-	}
 }
