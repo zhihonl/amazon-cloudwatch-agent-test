@@ -17,11 +17,10 @@ import (
 )
 
 type CPUTestRunner struct {
-	test_runner.ITestRunner
 	test_runner.BaseTestRunner
 }
 
-// var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
+var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
 
 func (t *CPUTestRunner) Validate() status.TestGroupResult {
 	metricsToFetch := t.GetMeasuredMetrics()
@@ -37,7 +36,7 @@ func (t *CPUTestRunner) Validate() status.TestGroupResult {
 }
 
 func (t *CPUTestRunner) GetTestName() string {
-	return "Userdata"
+	return "UserdataTest"
 }
 
 func (t *CPUTestRunner) GetAgentConfigFileName() string {
