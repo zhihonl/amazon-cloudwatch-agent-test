@@ -62,7 +62,7 @@ func (t *BaseTestRunner) GetAgentRunDuration() time.Duration {
 	return MinimumAgentRuntime
 }
 
-func (t *BaseTestRunner) runAgent() (status.TestGroupResult, error) {
+func (t *BaseTestRunner) RunAgent() (status.TestGroupResult, error) {
 	testGroupResult := status.TestGroupResult{
 		Name: t.GetTestName(),
 		TestResults: []status.TestResult{
