@@ -11,11 +11,6 @@ variable "ec2_instance_type" {
   default = "t3a.medium"
 }
 
-variable "os" {
-  type    = string
-  default = "linux"
-}
-
 variable "ssh_key_name" {
   type    = string
   default = ""
