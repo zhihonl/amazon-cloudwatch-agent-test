@@ -35,11 +35,6 @@ func (t *CPUTestRunner) Validate() status.TestGroupResult {
 	}
 }
 
-
-func (t *CPUTestRunner) ShouldRunAgent() bool  {
-	return false
-}
-
 func (t *CPUTestRunner) GetTestName() string {
 	return "Userdata"
 }
@@ -51,6 +46,21 @@ func (t *CPUTestRunner) GetAgentConfigFileName() string {
 func (t *CPUTestRunner) GetMeasuredMetrics() []string {
 	return []string{
 		"cpu_time_active_userdata"}
+}
+
+func (t *CPUTestRunner) runAgent() (status.TestGroupResult, error) {
+	log.Printf("Running test for runAgent in userdata mode")
+	testGroupResult := status.TestGroupResult{
+		Name: t.GetTestName(),
+		TestResults: []status.TestResult{
+			{
+				Name:   "Starting Agent",
+				Status: status.SUCCESSFUL,
+			},
+		},
+	}
+
+	return testGroupResult, nil
 }
 
 func (t *CPUTestRunner) validateCpuMetric(metricName string) status.TestResult {
@@ -91,18 +101,4 @@ func (t *CPUTestRunner) validateCpuMetric(metricName string) status.TestResult {
 
 	testResult.Status = status.SUCCESSFUL
 	return testResult
-}
-
-func (t *CPUTestRunner) runAgent() (status.TestGroupResult, error) {
-	testGroupResult := status.TestGroupResult{
-		Name: t.GetTestName(),
-		TestResults: []status.TestResult{
-			{
-				Name:   "Starting Agent",
-				Status: status.SUCCESSFUL,
-			},
-		},
-	}
-
-	return testGroupResult, nil
 }
