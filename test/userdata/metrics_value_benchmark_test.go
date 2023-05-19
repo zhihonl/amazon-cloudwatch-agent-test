@@ -62,9 +62,7 @@ func (suite *MetricBenchmarkTestSuite) TestAllInSuite() {
 	case computetype.EC2: // EC2 tests
 		log.Println("Environment compute type is EC2")
 		for _, testRunner := range getEc2TestRunners(env) {
-			if shouldRunEC2Test(env, testRunner) {
-				testRunner.Run(suite)
-			}
+			testRunner.Run(suite)
 		}
 	default:
 		log.Println("Invalid environment being used")
@@ -79,12 +77,4 @@ func (suite *MetricBenchmarkTestSuite) AddToSuiteResult(r status.TestGroupResult
 
 func TestMetricValueBenchmarkSuite(t *testing.T) {
 	suite.Run(t, new(MetricBenchmarkTestSuite))
-}
-
-func shouldRunEC2Test(env *environment.MetaData, t *test_runner.TestRunner) bool {
-	if env.EC2PluginTests == nil {
-		return true // default behavior is to run all tests
-	}
-	_, ok := env.EC2PluginTests[strings.ToLower(t.TestRunner.GetTestName())]
-	return ok
 }
