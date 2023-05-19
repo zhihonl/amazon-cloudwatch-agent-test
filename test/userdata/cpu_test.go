@@ -14,6 +14,7 @@ import (
 	"github.com/aws/amazon-cloudwatch-agent-test/test/metric/dimension"
 	"github.com/aws/amazon-cloudwatch-agent-test/test/status"
 	"github.com/aws/amazon-cloudwatch-agent-test/test/test_runner"
+	"github.com/aws/amazon-cloudwatch-agent-test/internal/common"
 )
 
 type CPUTestRunner struct {
@@ -92,7 +93,7 @@ func (t *CPUTestRunner) validateCpuMetric(metricName string) status.TestResult {
 		return testResult
 	}
 
-	if !isAllValuesGreaterThanOrEqualToExpectedValue(metricName, values, 0) {
+	if !common.isAllValuesGreaterThanOrEqualToExpectedValue(metricName, values, 0) {
 		return testResult
 	}
 
