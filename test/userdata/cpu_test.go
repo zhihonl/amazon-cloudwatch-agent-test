@@ -18,6 +18,7 @@ import (
 
 type CPUTestRunner struct {
 	test_runner.BaseTestRunner
+	test_runner.ITestRunner
 }
 
 var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
