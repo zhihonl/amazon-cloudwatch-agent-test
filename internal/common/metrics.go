@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net"
 	"time"
+	"log"
 
 	"collectd.org/api"
 	"collectd.org/exec"
