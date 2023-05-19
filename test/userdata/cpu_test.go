@@ -17,11 +17,11 @@ import (
 )
 
 type CPUTestRunner struct {
-	test_runner.BaseTestRunner
 	test_runner.ITestRunner
+	test_runner.BaseTestRunner
 }
 
-var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
+// var _ test_runner.ITestRunner = (*CPUTestRunner)(nil)
 
 func (t *CPUTestRunner) Validate() status.TestGroupResult {
 	metricsToFetch := t.GetMeasuredMetrics()
