@@ -62,9 +62,9 @@ func (t *BaseTestRunner) GetAgentRunDuration() time.Duration {
 	return MinimumAgentRuntime
 }
 
-func (t *BaseTestRunner) RunAgent() (status.TestGroupResult, error) {
+func (t *BaseTestRunner) RunAgent(T *TestRunner) (status.TestGroupResult, error) {
 	testGroupResult := status.TestGroupResult{
-		Name: t.GetTestName(),
+		Name: T.TestRunner.GetTestName(),
 		TestResults: []status.TestResult{
 			{
 				Name:   "Starting Agent",
@@ -73,13 +73,13 @@ func (t *BaseTestRunner) RunAgent() (status.TestGroupResult, error) {
 		},
 	}
 
-	err := t.SetupBeforeAgentRun()
+	err := T.TestRunner.SetupBeforeAgentRun()
 	if err != nil {
 		testGroupResult.TestResults[0].Status = status.FAILED
 		return testGroupResult, fmt.Errorf("Failed to complete setup before agent run due to: %w", err)
 	}
 
-	agentConfigPath := filepath.Join(agentConfigDirectory, t.GetAgentConfigFileName())
+	agentConfigPath := filepath.Join(agentConfigDirectory, T.TestRunner.GetAgentConfigFileName())
 	log.Printf("Starting agent using agent config file %s", agentConfigPath)
 	common.CopyFile(agentConfigPath, configOutputPath)
 	err = common.StartAgent(configOutputPath, false)
@@ -89,13 +89,13 @@ func (t *BaseTestRunner) RunAgent() (status.TestGroupResult, error) {
 		return testGroupResult, fmt.Errorf("Agent could not start due to: %w", err)
 	}
 
-	err = t.SetupAfterAgentRun()
+	err = T.SetupAfterAgentRun()
 	if err != nil {
 		testGroupResult.TestResults[0].Status = status.FAILED
 		return testGroupResult, fmt.Errorf("Failed to complete setup after agent run due to: %w", err)
 	}
 
-	runningDuration := t.GetAgentRunDuration()
+	runningDuration := T.TestRunner.GetAgentRunDuration()
 	time.Sleep(runningDuration)
 	log.Printf("Agent has been running for : %s", runningDuration.String())
 	common.StopAgent()
@@ -112,7 +112,7 @@ func (t *BaseTestRunner) RunAgent() (status.TestGroupResult, error) {
 func (t *TestRunner) Run(s ITestSuite) {
 	testName := t.TestRunner.GetTestName()
 	log.Printf("Running %v", testName)
-	testGroupResult, err := t.TestRunner.RunAgent()
+	testGroupResult, err := t.TestRunner.RunAgent(t)
 	if err == nil {
 		testGroupResult = t.TestRunner.Validate()
 	}

@@ -49,7 +49,7 @@ func (t *CPUTestRunner) GetMeasuredMetrics() []string {
 		"cpu_time_active_userdata"}
 }
 
-func (t *CPUTestRunner) RunAgent() (status.TestGroupResult, error) {
+func (t *CPUTestRunner) RunAgent(T *TestRunner) (status.TestGroupResult, error) {
 	log.Printf("Running test for runAgent in userdata mode")
 	testGroupResult := status.TestGroupResult{
 		Name: t.GetTestName(),
