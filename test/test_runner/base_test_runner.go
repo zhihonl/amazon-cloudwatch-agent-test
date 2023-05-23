@@ -32,7 +32,7 @@ type ITestRunner interface {
 	GetMeasuredMetrics() []string
 	SetupBeforeAgentRun() error
 	SetupAfterAgentRun() error
-	RunAgent() (status.TestGroupResult, error)
+	RunAgent(T *TestRunner) (status.TestGroupResult, error)
 }
 
 type TestRunner struct {
@@ -89,7 +89,7 @@ func (t *BaseTestRunner) RunAgent(T *TestRunner) (status.TestGroupResult, error)
 		return testGroupResult, fmt.Errorf("Agent could not start due to: %w", err)
 	}
 
-	err = T.SetupAfterAgentRun()
+	err = T.TestRunner.SetupAfterAgentRun()
 	if err != nil {
 		testGroupResult.TestResults[0].Status = status.FAILED
 		return testGroupResult, fmt.Errorf("Failed to complete setup after agent run due to: %w", err)
