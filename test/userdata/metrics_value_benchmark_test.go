@@ -19,7 +19,7 @@ import (
 	"github.com/aws/amazon-cloudwatch-agent-test/test/test_runner"
 )
 
-const namespace = "UserDataTest"
+const namespace = "MetricValueBenchmarkTest"
 
 type MetricBenchmarkTestSuite struct {
 	suite.Suite
