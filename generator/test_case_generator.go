@@ -88,10 +88,10 @@ var testTypeToTestConfig = map[string][]testConfig{
 		{"./test/acceptance", ""},
 	},
 	"ec2_userdata": {
-		{"./test/cloudwatchlogs"},
-		{"./test/metric_value_benchmark"},
-		{"./test/run_as_user"},
-		{"./test/userdata"},
+		{"./test/cloudwatchlogs", ""},
+		{"./test/metric_value_benchmark", ""},
+		{"./test/run_as_user", ""},
+		{"./test/userdata", ""},
   },
 
 	"eks_daemon": {
