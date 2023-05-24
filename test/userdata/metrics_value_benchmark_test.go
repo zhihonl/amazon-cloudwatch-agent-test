@@ -8,7 +8,6 @@ package metric_value_benchmark
 import (
 	"fmt"
 	"log"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
