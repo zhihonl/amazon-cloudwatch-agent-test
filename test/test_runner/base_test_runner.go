@@ -42,13 +42,6 @@ type BaseTestRunner struct {
 	DimensionFactory dimension.Factory
 }
 
-func (t *BaseTestRunner) GetTestName() string {
-	return "BaseTestRunner"
-}
-func (t *BaseTestRunner) GetAgentConfigFileName() string {
-	return "cpu_config.json"
-}
-
 func (t *BaseTestRunner) SetupBeforeAgentRun() error {
 	return nil
 }
