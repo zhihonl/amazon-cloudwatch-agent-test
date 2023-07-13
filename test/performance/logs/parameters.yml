@@ -16,7 +16,7 @@ commit_date: <commit_date>
 cloudwatch_agent_config: "<cloudwatch_agent_config>"
 
 # Metric that the test needs to validate
-metric_namespace: "CloudWatchAgentPerformance"
+metric_namespace: "CloudWatchAgentPerformanceMeasure"
 metric_validation: 
   - metric_name: "procstat_cpu_usage"
     metric_dimension: 

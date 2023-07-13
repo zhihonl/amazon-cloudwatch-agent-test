@@ -4,7 +4,7 @@
 		"run_as_user": "root"
 	},
 	"metrics": {
-		"namespace": "CloudWatchAgentPerformance",
+		"namespace": "CloudWatchAgentPerformanceMeasure",
 		"append_dimensions": {
 			"InstanceId": "${aws:InstanceId}"
 		},

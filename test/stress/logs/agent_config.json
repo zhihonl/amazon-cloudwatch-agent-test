@@ -3,7 +3,7 @@
       "debug": true
     },
     "metrics": {
-      "namespace": "CloudWatchAgentStress",
+      "namespace": "CloudWatchAgentDynamic",
       "metrics_collected": {
         "net": {
           "resources": [
@@ -41,7 +41,7 @@
 			"collect_list": [
 			  {
 				"file_path": "/tmp/test1.log",
-				"log_group_name": "{instance_id}",
+				"log_group_name": "dynamic_log_testing",
 				"log_stream_name": "{instance_id}/tmp1",
 				"timezone": "UTC"
 			  }
