@@ -46,7 +46,7 @@ func NewPerformanceValidator(vConfig models.ValidateConfig) models.ValidatorFact
 }
 
 func (s *PerformanceValidator) CheckData(startTime, endTime time.Time) error {
-	if strings.Contains(s.vConfig.GetTestCase(), "windows") {
+	if s.vConfig.GetOSFamily() == "windows" {
 		stat, err := s.GetWindowsPerformanceMetrics(startTime, endTime)
 		if err != nil {
 			return err
