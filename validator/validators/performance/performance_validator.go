@@ -175,7 +175,11 @@ func (s *PerformanceValidator) CalculateWindowsMetricStatsAndPackMetrics(statist
 		// GetMetricStatistics provides these statistics, however this will require maintaining multiple data arrays
 		// and can be difficult for code readability. This way follows the same calculation pattern as Linux
 		// and simplify the logics.
-		metricStats := CalculateMetricStatisticsWindows(metric.Datapoints, agentCollectionPeriod)
+		var data []float64
+		for _, datapoint := range metric.Datapoints {
+			data = append(data, *datapoint.Average)
+		}
+		metricStats := CalculateMetricStatisticsBasedOnDataAndPeriod(data, agentCollectionPeriod)
 		log.Printf("Finished calculate metric statictics for metric %s: %+v \n", metricName, metricStats)
 		performanceMetricResults[metricName] = metricStats
 	}
