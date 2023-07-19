@@ -47,16 +47,13 @@ func NewPerformanceValidator(vConfig models.ValidateConfig) models.ValidatorFact
 
 func (s *PerformanceValidator) CheckData(startTime, endTime time.Time) error {
 	log.Printf("GetOSFamily is returning value: %s", s.vConfig.GetOSFamily())
+	perfInfo := PerformanceInformation{}
 	if s.vConfig.GetOSFamily() == "windows" {
 		stat, err := s.GetWindowsPerformanceMetrics(startTime, endTime)
 		if err != nil {
 			return err
 		}
-		statInfo, err := s.CalculateWindowsMetricStatsAndPackMetrics(stat)
-		if err != nil {
-			return err
-		}
-		err = s.SendPacketToDatabase(statInfo)
+		perfInfo, err = s.CalculateWindowsMetricStatsAndPackMetrics(stat)
 		if err != nil {
 			return err
 		}
@@ -66,16 +63,16 @@ func (s *PerformanceValidator) CheckData(startTime, endTime time.Time) error {
 			return err
 		}
 
-		perfInfo, err := s.CalculateMetricStatsAndPackMetrics(metrics)
-		if err != nil {
-			return err
-		}
-
-		err = s.SendPacketToDatabase(perfInfo)
+		perfInfo, err = s.CalculateMetricStatsAndPackMetrics(metrics)
 		if err != nil {
 			return err
 		}
 	}
+	err := s.SendPacketToDatabase(perfInfo)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
