@@ -175,5 +175,5 @@ func (v *validatorConfig) GetUniqueID() string {
 }
 
 func (v *validatorConfig) GetOSFamily() string {
-	return uuid.NewString()
+	return v.OSFamily
 }
