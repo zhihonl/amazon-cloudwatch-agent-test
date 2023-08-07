@@ -239,6 +239,7 @@ resource "null_resource" "validator" {
   provisioner "local-exec" {
     command = <<-EOT
       echo Checking task metadata
+      curl -s 127.0.0.1:51678/v1/metadata | python -mjson.tool
       echo $ECS_CONTAINER_METADATA_URI
       echo "Validating metrics/logs"
       cd ../../..
