@@ -143,14 +143,6 @@ var testTypeToTestConfig = map[string][]testConfig{
 	},
 	"ecs_ec2_daemon": {
 		{
-			testDir: "./test/metric_value_benchmark",
-			targets: map[string]map[string]struct{}{"metadataEnabled": {"enabled": {}}},
-		},
-		{
-			testDir: "./test/statsd",
-			targets: map[string]map[string]struct{}{"metadataEnabled": {"enabled": {}}},
-		},
-		{
 			testDir: "./test/emf",
 			targets: map[string]map[string]struct{}{"metadataEnabled": {"disabled": {}}},
 		},
