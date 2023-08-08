@@ -239,9 +239,7 @@ resource "null_resource" "validator" {
   provisioner "local-exec" {
     command = <<-EOT
       echo Checking task metadata
-      sudo yum update -y ecs-init
-      sudo systemctl restart docker
-      sudo service docker restart && sudo start ecs
+      sleep 1800
       echo "Validating metrics/logs"
       cd ../../..
       go test ${var.test_dir} -timeout 0 -computeType=ECS -ecsLaunchType=EC2 -ecsDeploymentStrategy=DAEMON -cwagentConfigSsmParamName=${local.cwagent_config_ssm_param_name} -clusterArn=${aws_ecs_cluster.cluster.arn} -cwagentECSServiceName=${aws_ecs_service.cwagent_service.name} -v
