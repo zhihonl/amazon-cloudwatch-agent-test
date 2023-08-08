@@ -191,6 +191,7 @@ resource "aws_ecs_service" "cwagent_service" {
   task_definition     = aws_ecs_task_definition.cwagent_task_definition.arn
   launch_type         = "EC2"
   scheduling_strategy = "DAEMON"
+  enable_execute_command = true
 
   depends_on = [aws_ecs_task_definition.cwagent_task_definition]
 }
