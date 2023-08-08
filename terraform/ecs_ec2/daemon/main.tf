@@ -239,7 +239,7 @@ resource "null_resource" "validator" {
   provisioner "local-exec" {
     command = <<-EOT
       echo Checking task metadata
-      curl -s http://localhost:51678/v1/metadata
+      curl http://localhost:51678/v1/metadata
       echo "Validating metrics/logs"
       cd ../../..
       go test ${var.test_dir} -timeout 0 -computeType=ECS -ecsLaunchType=EC2 -ecsDeploymentStrategy=DAEMON -cwagentConfigSsmParamName=${local.cwagent_config_ssm_param_name} -clusterArn=${aws_ecs_cluster.cluster.arn} -cwagentECSServiceName=${aws_ecs_service.cwagent_service.name} -v
