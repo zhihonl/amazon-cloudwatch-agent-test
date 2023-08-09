@@ -6,6 +6,9 @@
     "logfile": ""
   },
   "logs": {
+    "credentials": {
+      "role_arn": "arn:aws:iam::${MONITORING_ACCOUNT}:role/CrossAccountMonitoringAgentRole"
+    },
     "metrics_collected": {
       "emf": { }
     },
