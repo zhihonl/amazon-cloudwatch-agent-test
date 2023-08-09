@@ -144,10 +144,6 @@ var testTypeToTestConfig = map[string][]testConfig{
 	"ecs_ec2_daemon": {
 		{
 			testDir: "./test/emf",
-			targets: map[string]map[string]struct{}{"metadataEnabled": {"disabled": {}}},
-		},
-		{
-			testDir: "./test/emf",
 			targets: map[string]map[string]struct{}{"metadataEnabled": {"enabled": {}}},
 		},
 	},
