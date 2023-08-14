@@ -265,7 +265,5 @@ data "aws_instance" "ecs_ec2_instance" {
     ClusterName = aws_ecs_cluster.cluster.name
   }
 
-  instance_state_names = ["running", "stopped"]
-
   depends_on = [aws_ecs_service.cwagent_service, aws_ecs_service.extra_apps_service]
 }
