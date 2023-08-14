@@ -261,9 +261,10 @@ resource "null_resource" "disable_metadata" {
 }
 
 data "aws_instance" "ecs_ec2_instance" {
-  instance_tags = {
-    ClusterName = aws_ecs_cluster.cluster.name
+  filter {
+    name   = "tag:ClusterName"
+    values = ["aws_ecs_cluster.cluster.name"]
   }
 
-  depends_on = [aws_ecs_service.cwagent_service, aws_ecs_service.extra_apps_service]
+  depends_on = [aws_ecs_service.cwagent_service, aws_ecs_service.extra_apps_service, aws_autoscaling_group.cluster]
 }
