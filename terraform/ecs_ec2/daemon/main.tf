@@ -264,6 +264,4 @@ data "aws_instance" "ecs_ec2_instance" {
   instance_tags = {
     ClusterName = aws_ecs_cluster.cluster.name
   }
-
-  instance_state_names = ["running"]
 }
