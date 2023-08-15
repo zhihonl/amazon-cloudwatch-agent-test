@@ -253,6 +253,8 @@ resource "null_resource" "disable_metadata" {
 
   provisioner "local-exec" {
     command = <<-EOT
+      echo Sleep for 60 to allow instance to be attached to the cluster
+      sleep 60
       echo Setting metadata option for ECS EC2 instance to ${var.metadataEnabled}
       INSTANCEID=`aws ec2 describe-instances --filters Name=tag:ClusterName,Values=${aws_ecs_cluster.cluster.name} --query "Reservations[*].Instances[*].InstanceId" --output text`
       echo Instance ID for ECS instance is $INSTANCEID
