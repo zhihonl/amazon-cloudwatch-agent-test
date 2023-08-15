@@ -254,17 +254,10 @@ resource "null_resource" "disable_metadata" {
   provisioner "local-exec" {
     command = <<-EOT
       echo Setting metadata option for ECS EC2 instance to ${var.metadataEnabled}
-      aws ec2 modify-instance-metadata-options --instance-id ${data.aws_instance.ecs_ec2_instance.id} --http-endpoint ${var.metadataEnabled}
+      INSTANCEID=`aws ec2 describe-instances --filters Name=tag:ClusterName,Values=${aws_ecs_cluster.cluster.name} --query "Reservations[*].Instances[*].InstanceId" --output text`
+      echo Instance ID for ECS instance is $INSTANCEID
+      aws ec2 modify-instance-metadata-options --instance-id $INSTANCEID --http-endpoint ${var.metadataEnabled}
     EOT
   }
-  depends_on = [aws_ecs_service.cwagent_service, aws_ecs_service.extra_apps_service]
-}
-
-data "aws_instance" "ecs_ec2_instance" {
-  filter {
-    name   = "tag:ClusterName"
-    values = ["aws_ecs_cluster.cluster.name"]
-  }
-
   depends_on = [aws_ecs_service.cwagent_service, aws_ecs_service.extra_apps_service, aws_autoscaling_group.cluster]
 }
